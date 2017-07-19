@@ -1,4 +1,10 @@
 teste
 
+Essas são as referências
 
-asdfasdfadfa
+	private Projeto _projetoOriginalNoBd;
+
+	public ProjetoCapacitacaoBo(DbContext contexto, UnitOfWork<FunadespContext> uow = null)
+		: base(contexto, uow)
+	{
+	}
