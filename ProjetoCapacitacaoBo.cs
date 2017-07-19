@@ -369,36 +369,11 @@ namespace Funadesp.SisBolsas.Domain.Entities
             return projeto;
         }
 
-
-        public async Task DiretoriaTecnicaSolicitaAjuesteNaForma(int projetoId, string justificativa)
-        {
-            await MovimentarProjeto(projetoId, StatusProjeto.SubmetidoDaFunadespPraAjustesPorParteDaIes, justificativa);
-        }
-
-        public async Task DiretoriaTecnicaSolicitaAjuesteNoConteudo(int projetoId, string justificativa)
-        {
-            await MovimentarProjeto(projetoId, StatusProjeto.SubmetidoDaFunadespProSolicitantePraAjustes, justificativa);
-        }
-
-        public async Task DiretoriaTecnicaEmiteParecerFavoravel(int projetoId, string justificativa)
-        {
-            await MovimentarProjeto(projetoId, StatusProjeto.ParecerFavoravelSubmetidoAoDiretorDaFunadesp, justificativa);
-        }
-
-        public async Task DiretoriaTecnicaEmiteParecerDesfavoravel(int projetoId, string justificativa)
-        {
-            await MovimentarProjeto(projetoId, StatusProjeto.ParecerDesfavoravelSubmetidoAoDiretorDaFunadesp, justificativa);
-        }
-
         public async Task MovimentarProjeto(int idProjeto, StatusProjeto status, string justificativa = null)
         {
-            if (idProjeto <= 0) throw new ArgumentException($"idProjeto inválido. Valor informado » {idProjeto}");
+			if (idProjeto <= 0) throw new ArgumentException($"idProjeto inválido. Valor informado » {idProjeto}");
             var projeto = await GetSingleByIdAsTraking(idProjeto);
-            await MovimentarProjeto(projeto, status, justificativa);
-        }
-
-        public async Task MovimentarProjeto(Projeto projeto, StatusProjeto status, string justificativa = null)
-        {
+			
             if (projeto.Status == status) return;
 
             projeto.Status = status;
